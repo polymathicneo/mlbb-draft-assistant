@@ -67,7 +67,12 @@ class MainActivity : AppCompatActivity() {
                 Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
                 Uri.parse("package:$packageName")
             )
-            overlayPermissionLauncher.launch(intent)
+            try {
+                overlayPermissionLauncher.launch(intent)
+            } catch (e: Exception) {
+                val fallbackIntent = Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION)
+                overlayPermissionLauncher.launch(fallbackIntent)
+            }
         } else {
             startOverlayService()
             requestCapturePermission()
