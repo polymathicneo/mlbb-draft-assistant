@@ -32,15 +32,6 @@ class OverlayService : Service() {
 
     override fun onBind(intent: Intent?): IBinder? = null
 
-    override fun onCreate() {
-        super.onCreate()
-        instance = this
-        windowManager = getSystemService(Context.WINDOW_SERVICE) as WindowManager
-        
-        setupFab()
-        setupPanel()
-    }
-
     private fun setupFab() {
         fabBinding = LayoutFabBinding.inflate(LayoutInflater.from(this))
         
